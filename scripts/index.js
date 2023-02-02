@@ -110,7 +110,7 @@ function initService() {
   addPreloader(reserveFieldsetService);
   
   fetch(`${API_URL}api`).then(r => r.json()).then(data => {
-    console.log({data});
+    //console.log({data});
     renderPrice(priceList, data);
     removePreloader(priceList);
     renderService(reserveFieldsetService, data);
@@ -227,12 +227,11 @@ function setDisabled(ar, v) { ar.forEach(a => {a.disabled = v; })}
 function initReserve() {
   
   const reserveForm = document.querySelector('.reserve__form');
-  const { fieldspec, fielddata, fieldmonth, fieldday, fieldtime, btn } = reserveForm;
-
+  const { fildsetservice, fieldspec, fielddata, fieldmonth, fieldday, fieldtime, btn } = reserveForm;
   setDisabled([fieldspec, fielddata, fieldmonth, fieldday, fieldtime, btn], true);
 
   reserveForm.addEventListener('change', async evt => {
-    console.log(evt.target);
+    //console.log(evt.target);
     
     if (evt.target.name == 'service') {
       setDisabled([fieldspec, fielddata, fieldmonth, fieldday, fieldtime, btn], true);
@@ -274,4 +273,22 @@ function initReserve() {
       setDisabled([btn], false);
     }
   });
+
+
+  reserveForm.addEventListener('submit', async (evt) => {
+
+    evt.preventDefault();
+    const formData = new FormData(reserveForm);
+    const json = JSON.stringify(Object.fromEntries(formData));
+    const response = await fetch(`${API_URL}api/order`, { method: 'post', body: json });
+
+    const data = await response.json();
+    setDisabled([fildsetservice, fieldspec, fielddata, fieldmonth, fieldday, fieldtime, btn], true);
+
+    const p = document.createElement('p');
+    p.textContent = `Ура, забронированно (#${data.id})! Приходите ${new Intl.DateTimeFormat('ru-Ru', {month: 'long', day: 'numeric'}
+    ).format(new Date(`${data.month}/${data.day}`))}, время ${data.time}`;
+
+    reserveForm.append(p);
+  });   
 }

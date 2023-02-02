@@ -153,7 +153,7 @@
 
           <form class="reserve__form">
             <div class="reserve__form-container">
-              <fieldset class="reserve__fildset">
+              <fieldset class="reserve__fildset reserve__fildset_service">
                 <legend class="reserve__legend">Услуга</legend>
 
                 <label class="radio">
@@ -186,7 +186,7 @@
                 </label>
               </fieldset>
 
-              <fieldset class="reserve__fildset">
+              <fieldset class="reserve__fildset" name="fieldspec">
                 <legend class="reserve__legend">Специалист</legend>
 
                 <label class="radio">
@@ -211,10 +211,10 @@
                 </label>
               </fieldset>
 
-              <fieldset class="reserve__fildset">
+              <fieldset class="reserve__fildset" name="fielddata">
                 <legend class="reserve__legend">Дата и время</legend>
 
-                <fieldset class="reserve__fildset reserve__fildset_sub">
+                <fieldset class="reserve__fildset reserve__fildset_sub" name="fieldmonth">
                   <label class="radio">
                     <input class="radio__input" type="radio" name="month" />
                     <span class="radio__label">Январь</span>
@@ -229,7 +229,7 @@
                   </label>
                 </fieldset>
 
-                <fieldset class="reserve__fildset reserve__fildset_sub">
+                <fieldset class="reserve__fildset reserve__fildset_sub" name="fieldday">
                   <label class="radio">
                     <input class="radio__input" type="radio" name="day" />
                     <span class="radio__label">18 Января</span>
@@ -248,7 +248,7 @@
                   </label>
                 </fieldset>
 
-                <fieldset class="reserve__fildset reserve__fildset_sub">
+                <fieldset class="reserve__fildset reserve__fildset_sub" name="fieldtime">
                   <label class="radio">
                     <input class="radio__input" type="radio" name="time" />
                     <span class="radio__label">10:00-11:30</span>
@@ -281,7 +281,7 @@
               </fieldset>
             </div>
 
-            <button class="reserve__btn main-link">Записаться</button>
+            <button class="reserve__btn main-link" id="btn">Записаться</button>
           </form>
         </div>
       </section>
